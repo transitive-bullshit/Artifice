@@ -1,0 +1,48 @@
+Add a global ControlPanel resetControls() button to reset the current
+ControlPanel to its default options
+
+Check out MemoryImageSource and setAnimated() for Simulation use
+
+
+
+==========
+Primordial
+==========
+
+Give Octopus-like Organisms the ability to curl up and then shoot out
+	(set all tentacle Nodes towards the head to curl up -- maybe in some predefined 
+	 pattern to curl up, and then burst out like on a restart --> and a burst of 
+	 velocity to the Head node as well)
+	 
+
+interface PrimordialOrganism {
+	update(), setVariation(), paint();
+}
+
+PrimordialCell extends gfx.Ellipse implements PrimordialOrganism
+	PrimordialCell(JPanel container)
+	
+	update(), setVariation(), paint()
+	setTurningVelocityBounds(float min, float max);
+	setSpeedBounds(float min, float max);
+	
+	_x, _y, _size, _girth
+	_viscosity, _turningVelocity, _theta, _speed
+	PrimordialNode _node
+	
+PrimordialFlagellum extends PrimordialCell
+	PrimordialFlagella(JPanel container, PrimordialCell head /* optional */, 
+	int length, float connectedness, int variation);
+	
+	update(), setVariation(), paint()
+	
+	PrimordialCell _cells[]
+	
+PrimordialOctopus extends PrimordialOrganism
+	PrimordialOctopus(JPanel container, int variation);
+
+	update(), setVariation(), paint()
+	
+	PrimordialCell _head
+	PrimordialFlagella _flagella[]
+	int _length
